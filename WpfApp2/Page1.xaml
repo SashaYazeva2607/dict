@@ -1,0 +1,26 @@
+﻿<Page x:Class="WpfApp2.Page1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Dictionary Page">
+    <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+        <DataGrid Name="termDataGrid" AutoGenerateColumns="False" 
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                  Margin="15">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="id" Binding="{Binding id}" Width="25"/>
+                <DataGridTextColumn Header="Понятие" Binding="{Binding Понятие}" Width="Auto"/>
+                <DataGridTextColumn Header="Определение" Binding="{Binding Определение}" Width="Auto"/>
+                <DataGridTextColumn Header="Источник" Binding="{Binding Источник}" Width="Auto"/>
+            </DataGrid.Columns>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Foreground" Value="#FF1D1717"/>
+                </Style>
+            </DataGrid.RowStyle>
+        </DataGrid>
+        <Button Content="Удалить понятие" Margin="344,-46,-193,0" Width="111" Height="28" Click="Delete_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+
+
+    </Grid>
+
+</Page>
