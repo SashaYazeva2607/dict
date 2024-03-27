@@ -18,7 +18,7 @@ namespace WpfApp2
 {
     public partial class Page2 : Page
     {
-        private const string ConnectionString = @"Data Source=bd-kip.fa.ru\sqlexpress;Initial Catalog=testyazeva;User ID=sa;Password=1qaz!QAZ;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"; 
+        private const string ConnectionString = @"Data Source=bd-kip.fa.ru\sqlexpress;Initial Catalog=testyazeva;User ID=sa;Password=1qaz!QAZ;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public Page2()
         {
             InitializeComponent();
@@ -30,8 +30,6 @@ namespace WpfApp2
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
-
-                    // Запрос для добавления нового термина в базу данных
                     string query = $"INSERT INTO testyazeva.dbo.словарь (Понятие, Определение, Источник) VALUES " +
                                    $"('{TermTextBox.Text}', '{DefinitionTextBox.Text}', '{SourceTextBox.Text}')";
 

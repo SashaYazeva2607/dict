@@ -22,7 +22,7 @@ namespace WpfApp2
     /// </summary>
     public partial class Page1 : Page
     {
-        private const string ConnectionString = @"Data Source=bd-kip.fa.ru\sqlexpress;Initial Catalog=testyazeva;User ID=sa;Password=1qaz!QAZ;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"; 
+        private const string ConnectionString = @"Data Source=bd-kip.fa.ru\sqlexpress;Initial Catalog=testyazeva;User ID=sa;Password=1qaz!QAZ;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public Page1()
         {
             InitializeComponent();
@@ -35,16 +35,13 @@ namespace WpfApp2
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
-
-                    // Запрос для выборки данных из базы данных
                     string query = "SELECT id, Понятие, Определение, Источник FROM testyazeva.dbo.словарь";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         SqlDataReader reader = command.ExecuteReader();
-                        termDataGrid.Items.Clear(); // Очистка DataGrid перед загрузкой новых данных
+                        termDataGrid.Items.Clear();
                         while (reader.Read())
                         {
-                            // Загрузка данных в DataGrid
                             termDataGrid.Items.Add(new
                             {
                                 id = reader["id"],
@@ -67,16 +64,15 @@ namespace WpfApp2
             {
                 try
                 {
-                    int selectedTermid = (int)(termDataGrid.SelectedCells[0].Item as dynamic).ID;
+                    int selectedTermid = (int)(termDataGrid.SelectedCells[0].Item as dynamic).id;
                     using (SqlConnection connection = new SqlConnection(ConnectionString))
                     {
                         connection.Open();
-                        // Запрос для удаления термина из базы данных
                         string query = $"DELETE FROM testyazeva.dbo.словарь WHERE id = {selectedTermid}";
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
                             command.ExecuteNonQuery();
-                            LoadTermsFromDatabase(); // Обновление DataGrid после удаления
+                            LoadTermsFromDatabase(); 
                         }
                     }
                 }
@@ -89,7 +85,6 @@ namespace WpfApp2
             {
                 MessageBox.Show("Выберите понятие для удаления");
             }
-
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -97,4 +92,3 @@ namespace WpfApp2
         }
     }
 }
-   
